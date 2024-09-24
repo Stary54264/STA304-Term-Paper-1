@@ -32,7 +32,7 @@ data <-
       ),
       origin = "1970-01-01"
     ),
-    water_temperature = rnorm(number_of_dates, 15, 7)
+    water_temperature = rnorm(number_of_dates, 15, 5)
   )
 
 
