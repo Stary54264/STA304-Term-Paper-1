@@ -20,19 +20,18 @@ start_date <- as.Date("2008-01-01")
 end_date <- as.Date("2023-12-31")
 
 # Set the number of random dates you want to generate
-number_of_dates <- 1000
+sim <- 1000
 
 data <-
   tibble(
-    dates = as.Date(
-      runif(
-        n = number_of_dates,
-        min = as.numeric(start_date),
-        max = as.numeric(end_date)
-      ),
+    date = as.Date(
+      runif(sim, as.numeric(start_date), as.numeric(end_date)),
       origin = "1970-01-01"
     ),
-    water_temperature = rnorm(number_of_dates, 15, 5)
+    air_temp = round(rnorm(sim, 20, 5), 2),
+    rain = sample(c("Yes", "No"), sim, p = c(0.35, 0.75), replace = TRUE),
+    water_temp = round(rnorm(sim, 15, 5), 2),
+    water_fowl = round(rpois(sim, 30))
   )
 
 
