@@ -19,7 +19,7 @@ set.seed(1009377666)
 start_date <- as.Date("2008-01-01")
 end_date <- as.Date("2023-12-31")
 
-# Set the number of random dates you want to generate
+# Set the number of observations
 sim <- 1000
 
 data <-
@@ -30,7 +30,7 @@ data <-
     ),
     air_temp = round(rnorm(sim, 20, 5), 2),
     rain = sample(c("Yes", "No"), sim, p = c(0.35, 0.75), replace = TRUE),
-    water_temp = round(rnorm(sim, 15, 5), 2),
+    water_temp = round(rnorm(sim, 15, 4), 2),
     water_fowl = round(rpois(sim, 30))
   )
 

@@ -16,10 +16,13 @@ library(tidyverse)
 data <- read_csv("data/raw_data/simulated.csv")
 
 # Test for negative water temperature
-data$water_temperature |> min() <= 0
+data$water_temp |> min() <= 0
 
 # Test for too high water temperature
-data$water_temperature  |> max() >= 50
+data$water_temp  |> max() >= 50
+
+# Test for negative water fowl observation
+data$water_fowl  |> min() <= 0
 
 # Test for NAs
-all(is.na(data$water_temperature))
+all(is.na(data))
