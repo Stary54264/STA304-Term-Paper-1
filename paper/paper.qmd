@@ -1,10 +1,10 @@
 ---
-title: "Data Analysis of Toronto Beach Data"
+title: "Data Analysis of the Relationship Between Date, Air Temperature, Whether It Rains or Not, Water Temperature, and Observations of Water Fowls at Beaches in Toronto"
 author: "Yanzun Jiang"
-thanks: "Code and data are available at: LINK."
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+thanks: "Code and data supporting this analysis is available at: https://github.com/Stary54264/Toronto-Beach-Data"
+abstract: "This paper conducted a basic data analysis on data of beaches in Toronto. The variables mentioned in the tile are highly correlated. The analysis can help us to know better about beaches in Toronto. Further, it helps meteorologists to monitor climate changes."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -15,94 +15,149 @@ bibliography: references.bib
 #| warning: false
 #| message: false
 
+# load packages and read data
 library(tidyverse)
-library(palmerpenguins)
+library(knitr)
 ```
-
 
 # Introduction
 
 We use @citeR and @opendatatoronto.
 
-The remainder of this paper is structured as follows. @sec-data....
+The remainder of this paper is structured as follows.
 
+@sec-data
 
+&nbsp; @sec-data-1
+
+&nbsp; @sec-data-2
+
+&nbsp; &nbsp; @sec-data-2-1
+
+&nbsp; &nbsp; @sec-data-2-2
+
+&nbsp; &nbsp; @sec-data-2-3
+
+&nbsp; &nbsp; @sec-data-2-4
+
+@sec-results
+
+@sec-discussion
+
+\newpage
 
 # Data {#sec-data}
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
-
 ```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
+#| include: false
+#| warning: false
+#| message: false
 
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
 ```
 
-Talk more about it.
+## Preview of data {#sec-data-1}
 
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+Our data (@tbl-data) is about beaches in Toronto, from @opendatatoronto.
 
 ```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
+#| label: tbl-data
 #| echo: false
 #| warning: false
 #| message: false
 
-# analysis_data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
-# 
-# analysis_data |> 
-#   ggplot(aes(x = width, y = length)) +
-#   geom_point(alpha = 0.8) +
-#   theme_minimal() +
-#   labs(x = "Wing width (mm)",
-#        y = "Wing length (mm)")
+kable(head(data), format = "markdown")
 ```
 
-Talk way more about it. 
+This dataset records the date (which was separated into year, month, and day), the air temperature, whether it rains or not, the water temperature, and the observations of water fowls. We will analyze the relationship between these variables in the following part.
 
+## Visualization of the Distribution of Each Observed Variable {#sec-data-2}
 
+This part shows the distributions of each observed variables using histograms.
 
-# Model
+### Air Temperature {#sec-data-2-1}
 
-The goal of our modelling strategy is twofold. Firstly,...
+This histogram (@fig-air-temp) shows the distribution of air temperatures of beaches in Toronto.
 
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
+```{r}
+#| label: fig-air-temp
+#| fig-cap: Histogram of Air Temperature
+#| echo: false
+#| warning: false
+#| message: false
 
-## Model set-up
+data |>
+  ggplot(aes(x = air_temp)) +
+  geom_histogram(bins = 30, col = "darkblue", fill = "lightblue") +
+  theme_minimal() +
+  labs(x = "Air Temperature", y = "# of Occurences")
+```
 
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
+We can clearly see the data is unimodal and is not skewed.
 
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
+### Rain {#sec-data-2-2}
 
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
+This bar graph (@fig-rain) shows the distribution of whether it rains of not at beaches in Toronto.
 
+```{r}
+#| label: fig-rain
+#| fig-cap: Bar Graph of Whether It Rains or Not
+#| echo: false
+#| warning: false
+#| message: false
 
-### Model justification
+data |>
+  ggplot(aes(x = rain)) +
+  geom_bar(col = "darkblue", fill = "lightblue") +
+  theme_minimal() +
+  labs(x = "Whether It Rains or Not", y = "# of Occurences")
+```
 
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
+We can clearly see that there are less raining days.
 
-We can use maths by including latex between dollar signs, for instance $\theta$.
+### Water Temperature {#sec-data-2-3}
 
+This histogram (@fig-water-temp) shows the distribution of water temperatures of beaches in Toronto.
 
-# Results
+```{r}
+#| label: fig-water-temp
+#| fig-cap: Histogram of Water Temperature
+#| echo: false
+#| warning: false
+#| message: false
 
-Our results are summarized in @tbl-modelresults.
+data |>
+  ggplot(aes(x = water_temp)) +
+  geom_histogram(bins = 30, col = "darkblue", fill = "lightblue") +
+  theme_minimal() +
+  labs(x = "Water Temperature", y = "# of Occurences")
+```
+
+We can clearly see the data is unimodal, which is the same as air temperatures, but it is left-skewed.
+
+### Observations of Water Fowls {#sec-data-2-4}
+
+This histogram (@fig-water-fowl) shows the distribution of observations of water fowls of beaches in Toronto.
+
+```{r}
+#| label: fig-water-fowl
+#| fig-cap: Histogram of Observations of Water Fowls
+#| echo: false
+#| warning: false
+#| message: false
+
+data |>
+  ggplot(aes(x = water_fowl)) +
+  geom_histogram(bins = 30, col = "darkblue", fill = "lightblue") +
+  theme_minimal() +
+  labs(x = "Observations of Water Fowls", y = "# of Occurences")
+```
+
+We can clearly see the data is unimodal but highly right-skewed.
+
+# Results {#sec-results}
+
+Our results are summarized in.
 
 ```{r}
 #| echo: false
@@ -112,6 +167,7 @@ Our results are summarized in @tbl-modelresults.
 
 library(rstanarm)
 ```
+
 
 ```{r}
 #| echo: false
@@ -123,9 +179,7 @@ library(rstanarm)
 ```
 
 
-
-
-# Discussion
+# Discussion {#sec-discussion}
 
 ## First discussion point {#sec-first-point}
 
@@ -147,45 +201,6 @@ Weaknesses and next steps should also be included.
 
 
 # Additional data details
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-
-```
-
 
 
 \newpage
