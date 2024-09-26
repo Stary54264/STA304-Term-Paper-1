@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repo is the analysis of data of beaches in Toronto.
+This repo contains all the files needed for the analysis of data of beaches in Toronto.
 
 
 ## File Structure
