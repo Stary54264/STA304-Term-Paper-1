@@ -1,5 +1,6 @@
 ---
-title: "Data Analysis of the Relationship Between Date, Air Temperature, Whether It Rains or Not, Water Temperature, and Observations of Water Fowls at Beaches in Toronto"
+title: "Toronto Beach Data"
+subtitle: "Data Analysis of the Relationship Between Date, Air Temperature, Whether It Rains or Not, Water Temperature, and Observations of Water Fowls"
 author: "Yanzun Jiang"
 date: today
 date-format: long
@@ -27,24 +28,15 @@ We use @citeR and @opendatatoronto.
 The remainder of this paper is structured as follows.
 
 @sec-data
-
-&nbsp; @sec-data-1
-
-&nbsp; @sec-data-2
-
-&nbsp; &nbsp; @sec-data-2-1
-
-&nbsp; &nbsp; @sec-data-2-2
-
-&nbsp; &nbsp; @sec-data-2-3
-
-&nbsp; &nbsp; @sec-data-2-4
-
+@sec-data-1
+@sec-data-2
+@sec-data-2-1
+@sec-data-2-2
+@sec-data-2-3
+@sec-data-2-4
 @sec-results
-
 @sec-discussion
 
-\newpage
 
 # Data {#sec-data}
 
@@ -62,6 +54,7 @@ Our data (@tbl-data) is about beaches in Toronto, from @opendatatoronto.
 
 ```{r}
 #| label: tbl-data
+#| tbl-cap: Preview of Data
 #| echo: false
 #| warning: false
 #| message: false
@@ -81,7 +74,7 @@ This histogram (@fig-air-temp) shows the distribution of air temperatures of bea
 
 ```{r}
 #| label: fig-air-temp
-#| fig-cap: Histogram of Air Temperature
+#| fig-cap: Air Temperature at Toronto Beaches from
 #| echo: false
 #| warning: false
 #| message: false
@@ -197,15 +190,16 @@ Weaknesses and next steps should also be included.
 
 \appendix
 
-# Appendix {-}
+# Appendix {#sec-appendix}
 
+## Dataset and Graph Sketches {#sec-appendix-1}
 
-# Additional data details
+Sketches depicting both the desired dataset and the graphs generated in this analysis are available in the GitHub Repository.
 
+## Data Cleaning {#sec-appendix-2}
+
+The data cleaning process involved renaming variables, filtering out useless columns from the raw dataset, filtering out observations with NAs, and removing the outliers using z-scores.
 
 \newpage
 
-
 # References
-
-
