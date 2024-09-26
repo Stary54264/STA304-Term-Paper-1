@@ -13,6 +13,7 @@ library(tidyverse)
 
 
 #### Test data ####
+# Read the data
 data <- read_csv("data/raw_data/simulated.csv")
 
 # Test for negative water temperature

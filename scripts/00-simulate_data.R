@@ -22,6 +22,7 @@ end_date <- as.Date("2023-12-31")
 # Set the number of observations
 sim <- 1000
 
+# Simulate the data
 data <-
   tibble(
     date = as.Date(
