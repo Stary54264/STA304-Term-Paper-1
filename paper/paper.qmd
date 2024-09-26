@@ -4,10 +4,11 @@ subtitle: "Data Analysis of the Relationship Between Date, Air Temperature, Whet
 author: "Yanzun Jiang"
 date: today
 date-format: long
-thanks: "Code and data supporting this analysis is available at: https://github.com/Stary54264/Toronto-Beach-Data"
-abstract: "This paper conducted a basic data analysis on data of beaches in Toronto. The variables mentioned in the tile are highly correlated. The analysis can help us to know better about beaches in Toronto. Further, it helps meteorologists to monitor climate changes."
+thanks: "Code and data supporting this analysis is available at: <https://github.com/Stary54264/Toronto-Beach-Data>"
+abstract: "This report analyzes environmental data collected in the summer of 2023 regarding Toronto's beaches, focusing on variables such as air temperature, water temperature, rainfall, and waterfowl observations. The findings reveal that ?increased water temperatures correlate with higher waterfowl activity, while rainy conditions tend to reduce sightings?. These insights emphasize the importance of understanding how weather patterns affect wildlife behavior and beach usability, suggesting that public awareness and management strategies should be adapted accordingly. Future research should explore the impact of these environmental factors on beachgoer experiences and the broader ecological implications."
 format: pdf
 number-sections: true
+toc: true
 bibliography: references.bib
 ---
 
@@ -21,22 +22,15 @@ library(tidyverse)
 library(knitr)
 ```
 
+\newpage
+
 # Introduction
 
-We use @citeR and @opendatatoronto.
+In 2014, Toronto experienced an extremely cold summer that impacted its beaches @torontoweather. During this period, data on key environmental factors, such as air temperature, water temperature, rainfall, and observations of waterfowl activity, was collected at various beaches across the city @opendatatoronto. These factors are critical as they directly influence the ecological balance of the beaches, the safety of recreational activities, and the overall enjoyment of beachgoers @weatherandbeach.
 
-The remainder of this paper is structured as follows.
+Consequently, analyzing this environmental data is essential to understanding how these variables affect the behavior of waterfowl and the suitability of the beaches for public use. According to @temperatureandwaterfowl, waterfowl presence can be influenced by temperature changes, precipitation, and human activity on the beaches. This study focuses on examining the relationships between air temperature, water temperature, rainfall, and waterfowl observations, and how these conditions might correlate with fluctuations in bird activity and potential impacts on beachgoers.
 
-@sec-data
-@sec-data-1
-@sec-data-2
-@sec-data-2-1
-@sec-data-2-2
-@sec-data-2-3
-@sec-data-2-4
-@sec-results
-@sec-discussion
-
+To conduct this analysis, a dataset collected by @opendatatoronto was utilized, as described in @sec-data. Based on the initial findings, it was observed that ???higher water temperatures coincided with an increase in waterfowl activity, while rainy days led to a decrease in sightings ???(@sec-results). As discussed in @sec-discussion, ???these trends highlight the potential for waterfowl to congregate under specific environmental conditions, potentially affecting beach safety and cleanliness. Further recommendations include improving public awareness of how wildlife interactions and weather patterns influence beach environments???. This paper's structure includes an overview of the data and methods in @sec-data, the results of the analysis in @sec-results, a detailed discussion of the results in @sec-discussion, and supplementary insights in @sec-appendix.
 
 # Data {#sec-data}
 
@@ -48,7 +42,9 @@ The remainder of this paper is structured as follows.
 data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
 ```
 
-## Preview of data {#sec-data-1}
+## Overview
+
+### Preview of the Dataset
 
 Our data (@tbl-data) is about beaches in Toronto, from @opendatatoronto.
 
@@ -64,11 +60,7 @@ kable(head(data), format = "markdown")
 
 This dataset records the date (which was separated into year, month, and day), the air temperature, whether it rains or not, the water temperature, and the observations of water fowls. We will analyze the relationship between these variables in the following part.
 
-## Visualization of the Distribution of Each Observed Variable {#sec-data-2}
-
-This part shows the distributions of each observed variables using histograms.
-
-### Air Temperature {#sec-data-2-1}
+### Air Temperature
 
 This histogram (@fig-air-temp) shows the distribution of air temperatures of beaches in Toronto.
 
@@ -88,7 +80,7 @@ data |>
 
 We can clearly see the data is unimodal and is not skewed.
 
-### Rain {#sec-data-2-2}
+### Rain
 
 This bar graph (@fig-rain) shows the distribution of whether it rains of not at beaches in Toronto.
 
@@ -108,7 +100,7 @@ data |>
 
 We can clearly see that there are less raining days.
 
-### Water Temperature {#sec-data-2-3}
+### Water Temperature
 
 This histogram (@fig-water-temp) shows the distribution of water temperatures of beaches in Toronto.
 
@@ -128,7 +120,7 @@ data |>
 
 We can clearly see the data is unimodal, which is the same as air temperatures, but it is left-skewed.
 
-### Observations of Water Fowls {#sec-data-2-4}
+### Observations of Water Fowls
 
 This histogram (@fig-water-fowl) shows the distribution of observations of water fowls of beaches in Toronto.
 
@@ -174,7 +166,7 @@ library(rstanarm)
 
 # Discussion {#sec-discussion}
 
-## First discussion point {#sec-first-point}
+## First discussion point
 
 If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
 
@@ -192,11 +184,11 @@ Weaknesses and next steps should also be included.
 
 # Appendix {#sec-appendix}
 
-## Dataset and Graph Sketches {#sec-appendix-1}
+## Graph and Sketches
 
 Sketches depicting both the desired dataset and the graphs generated in this analysis are available in the GitHub Repository.
 
-## Data Cleaning {#sec-appendix-2}
+## Data Cleaning
 
 The data cleaning process involved renaming variables, filtering out useless columns from the raw dataset, filtering out observations with NAs, and removing the outliers using z-scores.
 
