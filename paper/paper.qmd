@@ -1,6 +1,6 @@
 ---
 title: "Toronto Beach Data"
-subtitle: "Data Analysis of the Relationship Between Date of Observation, Air Temperatures, Water Temperatures, Rainfall Presence, and waterfowl activity"
+subtitle: "Data Analysis of the Relationship Between Date of Observation, Air Temperatures, Rainfall Presence, Water Temperatures, and Waterfowl Activities"
 author: "Yanzun Jiang"
 date: today
 date-format: long
@@ -52,7 +52,7 @@ The dataset was accessed using the `opendatatoronto` package @opendatatoronto. F
 
 ### Preview of the Dataset
 
-Here is a preview of the dataset used in this analysis @tbl-data, which spans from 2008 to present. The dataset provides a comprehensive overview of key environmental variables observed at Toronto's beaches, including the date of observation, air and water temperatures, rainfall presence, and waterfowl activity. These variables are crucial for understanding long-term trends in environmental conditions and their impact on beach safety, water quality, and wildlife behavior. This preview serves as an introduction to the dataset's structure and quality, setting the stage for in-depth analysis and trend exploration over time.
+The preview of the dataset (@tbl-data) spans from 2008 to present. The dataset provides a comprehensive overview of key environmental variables observed at Toronto's beaches, including the date of observation, air and water temperatures, rainfall presence, and waterfowl activity. These variables are crucial for understanding long-term trends in environmental conditions and their impact on beach safety, water quality, and wildlife behavior. This preview serves as an introduction to the dataset's structure and quality, setting the stage for in-depth analysis and trend exploration over time.
 
 ```{r}
 #| label: tbl-data
@@ -64,13 +64,13 @@ Here is a preview of the dataset used in this analysis @tbl-data, which spans fr
 kable(head(data), format = "markdown")
 ```
 
-### Air Temperature
+### Distribution of the Variables
 
-This histogram (@fig-air-temp) shows the distribution of air temperatures of beaches in Toronto.
+These graphs (@fig-airtemp, @fig-rain, @fig-watertemp, and @fig-waterfowl) visualizes the distribution of air temperatures, rainfall observations, water temperature, and waterfowl observations across the dataset from 2008 to the present. These graphs helps identify patterns, outliers, and the overall spread of the data. By examining these distributions, we can gain insights into how they behave over time and how it may influence other variables, such as water quality or wildlife observations.
 
 ```{r}
-#| label: fig-air-temp
-#| fig-cap: Air Temperature at Toronto Beaches from
+#| label: fig-airtemp
+#| fig-cap: Distribution of Air Temperature at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
@@ -79,18 +79,12 @@ data |>
   ggplot(aes(x = air_temp)) +
   geom_histogram(bins = 30, col = "darkblue", fill = "lightblue") +
   theme_minimal() +
-  labs(x = "Air Temperature", y = "# of Occurences")
+  labs(x = "Air Temperature (°C)", y = "Frequency")
 ```
-
-We can clearly see the data is unimodal and is not skewed.
-
-### Rain
-
-This bar graph (@fig-rain) shows the distribution of whether it rains of not at beaches in Toronto.
 
 ```{r}
 #| label: fig-rain
-#| fig-cap: Bar Graph of Whether It Rains or Not
+#| fig-cap: Rainfall Observations at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
@@ -99,18 +93,12 @@ data |>
   ggplot(aes(x = rain)) +
   geom_bar(col = "darkblue", fill = "lightblue") +
   theme_minimal() +
-  labs(x = "Whether It Rains or Not", y = "# of Occurences")
+  labs(x = "Rainfall Observed", y = "Frequency")
 ```
 
-We can clearly see that there are less raining days.
-
-### Water Temperature
-
-This histogram (@fig-water-temp) shows the distribution of water temperatures of beaches in Toronto.
-
 ```{r}
-#| label: fig-water-temp
-#| fig-cap: Histogram of Water Temperature
+#| label: fig-watertemp
+#| fig-cap: Distribution of Water Temperature at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
@@ -119,18 +107,12 @@ data |>
   ggplot(aes(x = water_temp)) +
   geom_histogram(bins = 30, col = "darkblue", fill = "lightblue") +
   theme_minimal() +
-  labs(x = "Water Temperature", y = "# of Occurences")
+  labs(x = "Water Temperature (°C)", y = "Frequency")
 ```
 
-We can clearly see the data is unimodal, which is the same as air temperatures, but it is left-skewed.
-
-### Observations of Water Fowls
-
-This histogram (@fig-water-fowl) shows the distribution of observations of water fowls of beaches in Toronto.
-
 ```{r}
-#| label: fig-water-fowl
-#| fig-cap: Histogram of Observations of Water Fowls
+#| label: fig-waterfowl
+#| fig-cap: Distribution of Waterfowl Observations at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
@@ -139,14 +121,80 @@ data |>
   ggplot(aes(x = water_fowl)) +
   geom_histogram(bins = 30, col = "darkblue", fill = "lightblue") +
   theme_minimal() +
-  labs(x = "Observations of Water Fowls", y = "# of Occurences")
+  labs(x = "Number of Waterfowl Observed", y = "Frequency")
 ```
 
-We can clearly see the data is unimodal but highly right-skewed.
+## Relationships Between the Variables
+
+### Changes of Beaches with Time
+
+These graphs (@fig-time-airtemp-year, @fig-time-rain, @fig-time-watertemp-year, and @fig-time-waterfowl-year) visualize the relationship between each environmental variable and time, spanning from 2008 to the present. By plotting air temperature, rainfall observations, water temperature, and waterfowl observations against time, we aim to identify trends, seasonal patterns, and potential long-term changes in these variables at Toronto's beaches. Each scatter plot provides insights into how these environmental factors have fluctuated over the years, revealing trends in beach weather conditions and wildlife presence. These time-based visualizations will aid in understanding any periodic or gradual changes and their potential impact on beach safety and ecological health.
+
+```{r}
+#| label: fig-time-airtemp-year
+#| fig-cap: Air Temperature Over Time at Toronto Beaches
+#| echo: false
+#| warning: false
+#| message: false
+
+data |>
+  ggplot(aes(x = date, y = air_temp)) +
+  geom_point(col = "lightblue") +
+  theme_minimal() +
+  labs(x = "Date", y = "Air Temperature (°C)")
+```
+
+```{r}
+#| label: fig-time-rain
+#| fig-cap: Rainfall Observations Over Time at Toronto Beaches
+#| echo: false
+#| warning: false
+#| message: false
+
+data |>
+  ggplot(aes(x = date, y = rain)) +
+  geom_boxplot(col = "darkblue", fill = "lightblue") +
+  theme_minimal() +
+  labs(x = "Date", y = "Rainfall")
+```
+
+```{r}
+#| label: fig-time-watertemp-year
+#| fig-cap: Water Temperature Over Time at Toronto Beaches
+#| echo: false
+#| warning: false
+#| message: false
+
+data |>
+  ggplot(aes(x = date, y = water_temp)) +
+  geom_point(col = "lightblue") +
+  theme_minimal() +
+  labs(x = "Date", y = "Water Temperature (°C)")
+```
+
+```{r}
+#| label: fig-time-waterfowl-year
+#| fig-cap: Waterfowl Observations Over Time at Toronto Beaches
+#| echo: false
+#| warning: false
+#| message: false
+
+data |>
+  ggplot(aes(x = date, y = water_fowl)) +
+  geom_point(col = "lightblue") +
+  theme_minimal() +
+  labs(x = "Date", y = "Number of Waterfowl Observed")
+```
 
 # Results {#sec-results}
 
-Our results are summarized in.
+From @fig-airtemp, we can clearly see the data is unimodal and is not skewed.
+
+From @fig-rain, we can clearly see that there are less raining days than non-raining days.
+
+From @fig-watertemp, we can clearly see the data is unimodal, which is the same as air temperatures, but it is left-skewed.
+
+From @fig-waterfowl, we can clearly see the data is unimodal but highly right-skewed.
 
 ```{r}
 #| echo: false
@@ -154,19 +202,8 @@ Our results are summarized in.
 #| warning: false
 #| message: false
 
-library(rstanarm)
-```
-
-
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
 
 ```
-
 
 # Discussion {#sec-discussion}
 
@@ -194,7 +231,7 @@ Sketches depicting both the desired dataset and the graphs generated in this ana
 
 ## Data Cleaning
 
-The data cleaning process involved renaming variables, filtering out useless columns from the raw dataset, filtering out observations with NAs, and removing the outliers using z-scores.
+The data cleaning process involved renaming variables, tidying the dates, filtering out useless columns from the raw dataset, filtering out observations with NAs, and removing the outliers using z-scores.
 
 \newpage
 
