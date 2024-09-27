@@ -21,7 +21,7 @@ cleaned_data <-
   raw_data |>
   janitor::clean_names() |>
   rename(date = data_collection_date) |>
-  select(date, air_temp, rain, water_temp, water_fowl) |>
+  select(date, air_temp, water_temp, water_fowl) |>
   filter_all(all_vars(!is.na(.))) |>
   separate(col = date,
            into = c("year", "month", "day"),
@@ -41,7 +41,6 @@ sd_water_fowl <- sd(cleaned_data$water_fowl)
 cleaned_data <-
   cleaned_data |>
   filter(abs((air_temp - mean_air_temp) / sd_air_temp) < 3,
-         rain == "Yes" | rain == "No",
          abs((water_temp - mean_water_temp) / sd_water_temp) < 3,
          abs((water_fowl - mean_water_fowl) / sd_water_fowl) < 3,
   )

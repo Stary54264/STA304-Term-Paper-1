@@ -30,7 +30,6 @@ data <-
       origin = "1970-01-01"
     ),
     air_temp = round(rnorm(sim, 20, 5), 2),
-    rain = sample(c("Yes", "No"), sim, p = c(0.35, 0.75), replace = TRUE),
     water_temp = round(rnorm(sim, 15, 4), 2),
     water_fowl = round(rpois(sim, 30))
   )
