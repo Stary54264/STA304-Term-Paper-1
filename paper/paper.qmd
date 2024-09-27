@@ -258,7 +258,21 @@ These scatter plots (@fig-year-air, @fig-year-water, and @fig-year-fowl) provide
 
 ## Gain from Seasonal Changes of Beaches
 
+@fig-month-air illustrates the relationship between air temperature and time, focusing on the months from May to October. A clear seasonal pattern emerges, with air temperatures gradually increasing from May, peaking around July, and then declining into September. The seasonal cycle is evident, as air temperatures warm up in late spring, reach their highest points in midsummer, and cool down as fall approaches. This reinforces the influence of seasonal climate variations on beach conditions.
 
+@fig-month-water presents air temperature versus time over the same period. It reveals a similar pattern to air temperature, with a peak in August, which is later than air temperature. This might be due to the absorption of heat in water, causing the temperature to fall gradually. This trend aligns with typical summer weather patterns, where water temperatures rise due to prolonged exposure to sunlight and warmer air, creating optimal conditions for beachgoers.
+
+@fig-month-fowl depicts waterfowl observations versus months from May to September. It shows varying levels of bird activity throughout the summer months, with peaks in July or August. These fluctuations could be influenced by breeding seasons, availability of food, or migratory behavior, all of which are affected by seasonal changes. The variability in bird counts reflects how environmental factors and beach conditions interact with wildlife throughout the warmer months.
+
+In summary, these scatter plots (@fig-month-air, @fig-month-water, and @fig-month-fowl) highlight the clear seasonal trends in both temperature and waterfowl observations at Toronto beaches between May and September. These patterns are important for understanding how environmental conditions shift during the beach season and inform management strategies for maintaining water quality and ecosystem balance during peak usage times.
+
+## Gain from Correlations Between Observed Variables
+
+@fig-air-water depicts the relationship between air temperature and water temperature. It shows a clear positive correlation between the two variables: as air temperatures rise, water temperatures also tend to increase. This relationship is expected, as higher air temperatures lead to more intense solar radiation and warming of the water. However, the variance of water temperature given same air temperature is large. There might be other confounders affecting this relationship. Also, this might be due to the slower rate at which water heats and cools compared to air.
+
+@fig-water-fowl illustrates the relationship between water temperature and waterfowl observations. It does not show a linear relationship between the variables. Rather, it reveals that waterfowl counts are generally higher when water temperatures are moderate, with fewer birds observed at the extreme ends of the temperature range. This suggests that waterfowl may be more active or present in larger numbers when water conditions are neither too cold nor too warm, possibly reflecting optimal conditions for feeding or habitat usage during these periods.
+
+These scatter plots (@fig-air-water and @fig-water-fowl) help clarify how environmental variables at Toronto beaches are interrelated. The strong correlation between air and water temperatures demonstrates how weather patterns influence beach conditions, while the relationship between water temperature and waterfowl observations provides insights into how wildlife activity is shaped by environmental factors. Understanding these connections is crucial for managing beach environments and ensuring both human and ecological health.
 
 # Discussion {#sec-discussion}
 
