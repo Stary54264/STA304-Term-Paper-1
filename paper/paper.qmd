@@ -50,6 +50,18 @@ The variables analyzed in this study include "Date," which records the day each 
 
 The dataset was accessed using the `opendatatoronto` package (@opendatatoronto). For the analysis, the R programming language was employed (@citeR), utilizing the `tidyverse` (@citetidyverse) package for data cleaning, transformation, visualization, and the `janitor` package (@citejanitor) for initial cleaning and formatting of the raw data. Afterward, the cleaned dataset was processed and tested using additional functions from the `tidyverse` package (@citetidyverse).
 
+## Measurement
+
+Each variable in this dataset was measured with specific techniques that ensure accuracy and relevance to the analysis of Toronto beaches.
+
+Air temperatures were measured using calibrated thermometers placed in shaded areas to avoid direct sunlight, providing accurate readings of the ambient temperature. Measurements were taken at regular intervals throughout the day, typically during peak observation hours, to capture variations in temperature across different times (@measurement).
+
+Water temperature was recorded using submerged thermometers positioned at varying depths. This approach allowed for capturing temperature gradients that could occur in different water layers, offering insights into thermal stratification, especially during warmer months (@measurement).
+
+Observations of waterfowl were conducted using a standardized counting method and estmating method. Trained observers recorded the number of birds present at various times throughout the day, ensuring that counts were conducted under similar conditions to minimize variability. Then they use the samples to estimate the total number of waterfowls. This method also included recording species, which adds valuable information about the biodiversity present in the area (@opendatatoronto).
+
+By discussing these measurement techniques, we establish a clear connection between the dataset and the reliability of the results. This thorough exploration of measurement practices highlights the importance of consistent and accurate data collection in understanding the environmental dynamics of Toronto beaches.
+
 ## Preview of the Dataset
 
 The preview of the dataset (@tbl-data) spans from 2008 to present. The dataset provides a comprehensive overview of key environmental variables observed at Toronto's beaches, including the date of observation, air and water temperatures, and waterfowl activity. These variables are crucial for understanding long-term trends in environmental conditions and their impact on beach safety, water quality, and wildlife behavior. This preview serves as an introduction to the dataset's structure and quality, setting the stage for in-depth analysis and trend exploration over time.
