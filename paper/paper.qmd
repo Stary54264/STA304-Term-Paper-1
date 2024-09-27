@@ -248,6 +248,16 @@ These histograms (@fig-air, @fig-water, and @fig-fowl) offer valuable insights i
 
 ## Gain from Changes of Beaches with Time
 
+@fig-year-air shows the relationship between air temperature and time. Over the years, we observe a decrease followed by an increase in air temperatures, with potential gradual trends reflecting long-term changes rather than distinct seasonal cycles. This could indicate climate-related variations or other long-term environmental shifts affecting the air temperature at the beaches.
+
+@fig-year-water displays water temperature versus time. Similar to air temperature, water temperature shows fluctuations across years, but with a less explicit pattern. The data suggests that the overall trends could be linked to climate change or weather anomalies.
+
+@fig-year-fowl illustrates waterfowl observations over time. The scatter plot reveals variations in bird activity across different years. While no sharp seasonal patterns are apparent due to the yearly scale, the data might point toward longer-term changes in waterfowl populations, potentially related to environmental factors, habitat changes, or migratory patterns.
+
+These scatter plots (@fig-year-air, @fig-year-water, and @fig-year-fowl) provide an overview of how the environmental conditions at Toronto beaches have evolved over the years. Rather than focusing on short-term seasonal changes, these visualizations highlight potential long-term trends and environmental shifts that could have significant implications for beach management and ecosystem health.
+
+## Gain from Seasonal Changes of Beaches
+
 
 
 # Discussion {#sec-discussion}
