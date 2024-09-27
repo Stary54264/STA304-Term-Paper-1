@@ -1,11 +1,11 @@
 ---
 title: "Toronto Beach Data"
-subtitle: "Data Analysis of the Relationship Between Date of Observation, Air Temperatures, Rainfall Presence, Water Temperatures, and Waterfowl Activities"
+subtitle: "Data Analysis of the Relationship Between Date of Observation, Air Temperatures, Water Temperatures, and Waterfowl Activities"
 author: "Yanzun Jiang"
 date: today
 date-format: long
 thanks: "Code and data supporting this analysis is available at: <https://github.com/Stary54264/Toronto-Beach-Data>"
-abstract: "This report analyzes environmental data collected in the summer of 2023 regarding Toronto's beaches, focusing on variables such as air temperature, water temperature, rainfall, and waterfowl observations. The findings reveal that #TODO increased water temperatures correlate with higher waterfowl activity, while rainy conditions tend to reduce sightings.# These insights emphasize the importance of understanding how weather patterns affect wildlife behavior and beach usability, suggesting that public awareness and management strategies should be adapted accordingly. Future research should explore the impact of these environmental factors on beachgoer experiences and the broader ecological implications."
+abstract: "This report analyzes environmental data collected in the summer of 2023 regarding Toronto's beaches, focusing on variables such as air temperature, water temperature, and waterfowl observations. The findings reveal that #TODO increased water temperatures correlate with higher waterfowl activity, while rainy conditions tend to reduce sightings.# These insights emphasize the importance of understanding how weather patterns affect wildlife behavior and beach usability, suggesting that public awareness and management strategies should be adapted accordingly. Future research should explore the impact of these environmental factors on beachgoer experiences and the broader ecological implications."
 format: pdf
 number-sections: true
 toc: true
@@ -26,9 +26,9 @@ library(knitr)
 
 # Introduction
 
-In 2014, Toronto experienced an extremely cold summer that impacted its beaches @torontoweather. During this period, data on key environmental factors, such as air temperature, water temperature, rainfall, and observations of waterfowl activity, was collected at various beaches across the city @opendatatoronto. These factors are critical as they directly influence the ecological balance of the beaches, the safety of recreational activities, and the overall enjoyment of beachgoers @weatherandbeach.
+In 2014, Toronto experienced an extremely cold summer that impacted its beaches (@torontoweather). During this period, data on key environmental factors, such as air temperature, water temperature, and observations of waterfowl activity, was collected at various beaches across the city (@opendatatoronto). These factors are critical as they directly influence the ecological balance of the beaches, the safety of recreational activities, and the overall enjoyment of beachgoers (@weatherandbeach).
 
-Consequently, analyzing this environmental data is essential to understanding how these variables affect the behavior of waterfowl and the suitability of the beaches for public use. According to @temperatureandwaterfowl, waterfowl presence can be influenced by temperature changes, precipitation, and human activity on the beaches. This study examines the relationships between air temperature, water temperature, rainfall, and waterfowl observations, and how these conditions might correlate with fluctuations in bird activity and potential impacts on beachgoers.
+Consequently, analyzing this environmental data is essential to understanding how these variables affect the behavior of waterfowl and the suitability of the beaches for public use. According to @temperatureandwaterfowl, waterfowl presence can be influenced by temperature changes, precipitation, and human activity on the beaches. This study examines the relationships between air temperature, water temperature, and waterfowl observations, and how these conditions might correlate with fluctuations in bird activity and potential impacts on beachgoers.
 
 To conduct this analysis, a dataset collected by @opendatatoronto was utilized, as described in @sec-data. Based on the initial findings, it was observed that #TODO higher water temperatures coincided with an increase in waterfowl activity, while rainy days led to a decrease in sightings (@sec-results).# As discussed in @sec-discussion, #TODO these trends highlight the potential for waterfowl to congregate under specific environmental conditions, potentially affecting beach safety and cleanliness. Further recommendations include improving public awareness of how wildlife interactions and weather patterns influence beach environments.# This paper's structure includes an overview of the data and methods in @sec-data, the results of the analysis in @sec-results, a detailed discussion of the results in @sec-discussion, and supplementary insights in @sec-appendix.
 
@@ -44,15 +44,15 @@ data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
 
 ## Overview
 
-The dataset used in this analysis is the "Toronto Beaches Observations" sourced from Toronto's Open Data platform @opendatatoronto. It records various aspects of the beaches in Toronto from 2008 to present. In Toronto, water quality at beaches is regularly monitored to ensure public safety, and environmental variables, such as air and water temperature, rainfall, and the presence of waterfowl, are tracked for ecological and recreational purposes @opendatatoronto.
+The dataset used in this analysis is the "Toronto Beaches Observations" sourced from Toronto's Open Data platform (@opendatatoronto). It records various aspects of the beaches in Toronto from 2008 to present. In Toronto, water quality at beaches is regularly monitored to ensure public safety, and environmental variables, such as air and water temperature, and the presence of waterfowl, are tracked for ecological and recreational purposes (@opendatatoronto).
 
-The variables analyzed in this study include "Date," which records the day each measurement was taken; "Air Temperature," which represents the temperature of the atmosphere at the beach site; "Water Temperature," indicating the temperature of the water in designated swimming areas; "Rainfall," which notes whether there was precipitation on the day of observation; and "Waterfowl Observations," which track the number of birds spotted near the water @opendatatoronto.
+The variables analyzed in this study include "Date," which records the day each measurement was taken; "Air Temperature," which represents the temperature of the atmosphere at the beach site; "Water Temperature," indicating the temperature of the water in designated swimming areas; and "Waterfowl Observations," which track the number of birds spotted near the water (@opendatatoronto).
 
-The dataset was accessed using the `opendatatoronto` package @opendatatoronto. For the analysis, the R programming language was employed @citeR, utilizing the `tidyverse` @citetidyverse package for data cleaning, transformation, visualization, and the `janitor` package @citejanitor for initial cleaning and formatting of the raw data. Afterward, the cleaned dataset was processed and tested using additional functions from the `tidyverse` package @citetidyverse.
+The dataset was accessed using the `opendatatoronto` package (@opendatatoronto). For the analysis, the R programming language was employed (@citeR), utilizing the `tidyverse` (@citetidyverse) package for data cleaning, transformation, visualization, and the `janitor` package (@citejanitor) for initial cleaning and formatting of the raw data. Afterward, the cleaned dataset was processed and tested using additional functions from the `tidyverse` package (@citetidyverse).
 
 ### Preview of the Dataset
 
-The preview of the dataset (@tbl-data) spans from 2008 to present. The dataset provides a comprehensive overview of key environmental variables observed at Toronto's beaches, including the date of observation, air and water temperatures, rainfall presence, and waterfowl activity. These variables are crucial for understanding long-term trends in environmental conditions and their impact on beach safety, water quality, and wildlife behavior. This preview serves as an introduction to the dataset's structure and quality, setting the stage for in-depth analysis and trend exploration over time.
+The preview of the dataset (@tbl-data) spans from 2008 to present. The dataset provides a comprehensive overview of key environmental variables observed at Toronto's beaches, including the date of observation, air and water temperatures, and waterfowl activity. These variables are crucial for understanding long-term trends in environmental conditions and their impact on beach safety, water quality, and wildlife behavior. This preview serves as an introduction to the dataset's structure and quality, setting the stage for in-depth analysis and trend exploration over time.
 
 ```{r}
 #| label: tbl-data
@@ -66,7 +66,7 @@ kable(head(data), format = "markdown")
 
 ### Distribution of the Variables
 
-These graphs (@fig-airtemp, @fig-rain, @fig-watertemp, and @fig-waterfowl) visualizes the distribution of air temperatures, rainfall observations, water temperature, and waterfowl observations across the dataset from 2008 to the present. These graphs helps identify patterns, outliers, and the overall spread of the data. By examining these distributions, we can gain insights into how they behave over time and how it may influence other variables, such as water quality or wildlife observations.
+These histograms (@fig-airtemp, @fig-watertemp, and @fig-waterfowl) visualizes the distribution of air temperatures, water temperature, and waterfowl observations across the dataset from 2008 to the present. These graphs helps identify patterns, outliers, and the overall spread of the data. By examining these distributions, we can gain insights into how they behave over time and how it may influence other variables, such as water quality or wildlife observations.
 
 ```{r}
 #| label: fig-airtemp
@@ -80,20 +80,6 @@ data |>
   geom_histogram(bins = 30, col = "darkblue", fill = "lightblue") +
   theme_minimal() +
   labs(x = "Air Temperature (°C)", y = "Frequency")
-```
-
-```{r}
-#| label: fig-rain
-#| fig-cap: Rainfall Observations at Toronto Beaches
-#| echo: false
-#| warning: false
-#| message: false
-
-data |>
-  ggplot(aes(x = rain)) +
-  geom_bar(col = "darkblue", fill = "lightblue") +
-  theme_minimal() +
-  labs(x = "Rainfall Observed", y = "Frequency")
 ```
 
 ```{r}
@@ -128,69 +114,97 @@ data |>
 
 ### Changes of Beaches with Time
 
-These graphs (@fig-time-airtemp-year, @fig-time-rain, @fig-time-watertemp-year, and @fig-time-waterfowl-year) visualize the relationship between each environmental variable and time, spanning from 2008 to the present. By plotting air temperature, rainfall observations, water temperature, and waterfowl observations against time, we aim to identify trends, seasonal patterns, and potential long-term changes in these variables at Toronto's beaches. Each scatter plot provides insights into how these environmental factors have fluctuated over the years, revealing trends in beach weather conditions and wildlife presence. These time-based visualizations will aid in understanding any periodic or gradual changes and their potential impact on beach safety and ecological health.
+These scatter plots (@fig-year-airtemp, @fig-year-watertemp, and @fig-year-waterfowl) visualize the relationship between each environmental variable and time, spanning from 2008 to the present. By plotting air temperature, water temperature, and waterfowl observations against time, we aim to identify trends, and potential long-term changes in these variables at Toronto's beaches. Each scatter plot provides insights into how these environmental factors have fluctuated over the years, revealing trends in beach weather conditions and wildlife presence. These time-based visualizations will aid in understanding any periodic or gradual changes and their potential impact on beach safety and ecological health.
 
 ```{r}
-#| label: fig-time-airtemp-year
-#| fig-cap: Air Temperature Over Time at Toronto Beaches
+#| label: fig-year-airtemp
+#| fig-cap: Air Temperature Over Years at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
 
 data |>
-  ggplot(aes(x = date, y = air_temp)) +
+  ggplot(aes(x = year, y = air_temp)) +
   geom_point(col = "lightblue") +
   theme_minimal() +
-  labs(x = "Date", y = "Air Temperature (°C)")
+  labs(x = "Year", y = "Air Temperature (°C)")
 ```
 
 ```{r}
-#| label: fig-time-rain
-#| fig-cap: Rainfall Observations Over Time at Toronto Beaches
+#| label: fig-year-watertemp
+#| fig-cap: Water Temperature Over Years at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
 
 data |>
-  ggplot(aes(x = date, y = rain)) +
-  geom_boxplot(col = "darkblue", fill = "lightblue") +
+  ggplot(aes(x = year, y = water_temp)) +
+  geom_point(col = "lightblue") +
   theme_minimal() +
-  labs(x = "Date", y = "Rainfall")
+  labs(x = "Year", y = "Water Temperature (°C)")
 ```
 
 ```{r}
-#| label: fig-time-watertemp-year
-#| fig-cap: Water Temperature Over Time at Toronto Beaches
+#| label: fig-year-waterfowl
+#| fig-cap: Waterfowl Observations Over Years at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
 
 data |>
-  ggplot(aes(x = date, y = water_temp)) +
+  ggplot(aes(x = year, y = water_fowl)) +
   geom_point(col = "lightblue") +
   theme_minimal() +
-  labs(x = "Date", y = "Water Temperature (°C)")
+  labs(x = "Year", y = "Number of Waterfowl Observed")
+```
+
+These scatter plots (@fig-month-airtemp, @fig-month-watertemp, and @fig-month-waterfowl) illustrate the seasonal variations in air temperature, water temperature, rainfall occurrence, and waterfowl observations at Toronto beaches from 2008 to the present. By plotting these variables over time, distinct seasonal patterns emerge, with warmer temperatures and higher waterfowl activity typically observed during the summer months, and cooler temperatures in winter. The scatter plots help visualize how these environmental factors fluctuate throughout the year, reflecting natural seasonal cycles. Observing these recurring trends provides valuable insights into the seasonal dynamics affecting beach ecosystems and recreational conditions.
+
+```{r}
+#| label: fig-month-airtemp
+#| fig-cap: Seasonal Change of Air Temperature at Toronto Beaches
+#| echo: false
+#| warning: false
+#| message: false
+
+data |>
+  ggplot(aes(x = month, y = air_temp)) +
+  geom_point(col = "lightblue") +
+  theme_minimal() +
+  labs(x = "Month", y = "Air Temperature (°C)")
 ```
 
 ```{r}
-#| label: fig-time-waterfowl-year
-#| fig-cap: Waterfowl Observations Over Time at Toronto Beaches
+#| label: fig-month-watertemp
+#| fig-cap: Seasonal Change of Water Temperature at Toronto Beaches
 #| echo: false
 #| warning: false
 #| message: false
 
 data |>
-  ggplot(aes(x = date, y = water_fowl)) +
+  ggplot(aes(x = month, y = water_temp)) +
   geom_point(col = "lightblue") +
   theme_minimal() +
-  labs(x = "Date", y = "Number of Waterfowl Observed")
+  labs(x = "Month", y = "Water Temperature (°C)")
+```
+
+```{r}
+#| label: fig-month-waterfowl
+#| fig-cap: Seasonal Change of Waterfowl Observations at Toronto Beaches
+#| echo: false
+#| warning: false
+#| message: false
+
+data |>
+  ggplot(aes(x = month, y = water_fowl)) +
+  geom_point(col = "lightblue") +
+  theme_minimal() +
+  labs(x = "Month", y = "Number of Waterfowl Observed")
 ```
 
 # Results {#sec-results}
 
 From @fig-airtemp, we can clearly see the data is unimodal and is not skewed.
-
-From @fig-rain, we can clearly see that there are less raining days than non-raining days.
 
 From @fig-watertemp, we can clearly see the data is unimodal, which is the same as air temperatures, but it is left-skewed.
 
